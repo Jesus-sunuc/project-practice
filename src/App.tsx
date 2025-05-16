@@ -1,9 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import BookCard from "./components/BookCard";
+import type { Book } from "./types/bookType";
 
-type Book = {
-  title: string;
-};
 
 function App() {
   const API_URL = import.meta.env.VITE_API_URL;
@@ -33,15 +32,13 @@ function App() {
   return (
     <>
       <div className="container">
+        <h1 className="text-success mt-4 text-center">Harry Potter's Book</h1>
         <div className="row">
-          <h1 className="text-success mt-4">Harry Poter's Books</h1>
-          <div>
-            <ol>
-              {books.map((book, index) => (
-                <li key={index}>Name: {book.title}</li>
-              ))}
-            </ol>
-          </div>
+          {books.map((book, index) => (
+            <div key={index} className="col-md-3 mb-3 mt-3">
+              <BookCard book={book} />
+            </div>
+          ))}
         </div>
       </div>
     </>
