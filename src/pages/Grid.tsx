@@ -1,24 +1,10 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import BookCard from "../components/BookCard";
-import type { Book } from "../types/bookType";
+import usePetition from "../hooks/usePetition";
 
 
 function Grid() {
-  const API_URL = import.meta.env.VITE_API_URL;
-  const [books, setBooks] = useState<Book[]>();
 
-  useEffect(() => {
-    axios
-      .get(`${API_URL}books`)
-      .then((data) => {
-        console.log(data);
-        setBooks(data.data);
-      })
-      .catch(() => {
-        console.error("Failed");
-      });
-  }, []);
+  const books = usePetition(`books`)
 
   if (!books)
     return (

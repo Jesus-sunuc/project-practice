@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 const Menu = () => {
+  const user = useContext(UserContext)
+
   return (
     <>
       <div className="container">
@@ -16,9 +20,14 @@ const Menu = () => {
                     Home
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item ms-4 me-4">
                   <NavLink className="nav-link active" to="/books">
                     Books
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link active" to="/profile">
+                    {user?.name}
                   </NavLink>
                 </li>
               </ul>
